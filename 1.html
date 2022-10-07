@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+            resolve('哈哈哈')
+        })
+
+        // promise.then((res) => {
+        //     console.log('res', res);
+        // })
+
+        // promise.then((res)=>{
+        //     console.log('res',res);
+        // })
+
+        //then方法可以多次调用， then方法传递的回调函数， 可以有返回值的
+        //then方法，是promise的返回值  返回值是promise
+        //如果返回的是一个普通值， 那么普通值会作为新的promise的resolve值
+       
+       
+        // promise.then(res=>{
+        //     return "aaaa"
+        //     //没有返回值， 相当于返回undefined
+        // }).then(res=>{
+        //     console.log("res",res);
+        //     return 'bbbb'
+        // }).then(res=>{
+        //     console.log("res0",res);
+        // })
+
+
+        //如果返回的是一个promise
+        // promise.then(res=>{
+        //     return new Promise((resolve,reject)=>{
+        //         setTimeout(()=>{
+        //             resolve(1111)
+        //         },3000)
+        //     })
+        // })
+
+        //如果返回的是一个对象，并且实现thenable
+
+        promise.then(res=>{
+            return {
+                then: function(resolve,reject){
+                    resolve(22222)
+                }
+            }
+        }).then(res=>{
+            console.log("res",res);
+        })
+    </script>
+</body>
+
+</html>
